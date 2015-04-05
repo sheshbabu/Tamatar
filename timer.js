@@ -1,8 +1,9 @@
 var Timer = (function() {
 
-    function Timer(duration, callback) {
+    function Timer(duration, progressCallback, endCallback) {
         this.duration = duration;
-        this.callback = callback;
+        this.progressCallback = progressCallback;
+        this.endCallback = endCallback;
         this.interval = null;
     }
 
@@ -17,18 +18,19 @@ var Timer = (function() {
             diffTime = (self.duration - (currTime - startTime)) / 1000;
 
             if (diffTime < 0) {
-                clearInterval(interval);
+                self.endCallback();
+                return;
             }
 
             diffTime = self.getTimeBreakdown(diffTime);
-            self.callback(diffTime.minutes, diffTime.seconds);
+            self.progressCallback(diffTime.minutes, diffTime.seconds);
         }, 1000);
     }
 
     Timer.prototype.stop = function() {
         clearInterval(this.interval);
         var inital = this.getTimeBreakdown(this.duration / 1000);
-        this.callback(inital.minutes, inital.seconds);
+        this.progressCallback(inital.minutes, inital.seconds);
     }
 
     Timer.prototype.getTimeBreakdown = function(time) {

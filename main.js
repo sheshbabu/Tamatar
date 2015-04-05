@@ -6,6 +6,14 @@ var setTimerDisplay = function(minutes, seconds) {
 };
 setTimerDisplay(25, '00');
 
+var onTimerEnd = function() {
+    timer.stop();
+    startStopEl.textContent = 'Start'
+    isRunning = false;
+    enablePaneSwitching();
+    chrome.app.window.current().focus();
+}
+
 var timer;
 
 var isRunning = false;
@@ -23,7 +31,7 @@ longBreakEl.addEventListener('click', showLongBreakPane);
 function startStop() {
     var timerDuration = getTimerDurationByPane(currentPane);
     if (!isRunning) {
-        timer = new Timer(timerDuration, setTimerDisplay);
+        timer = new Timer(timerDuration, setTimerDisplay, onTimerEnd);
         timer.start();
         isRunning = true;
         startStopEl.textContent = 'Stop';
