@@ -74,15 +74,29 @@ function getTimerDurationByPane(paneName) {
 
 function showPomodoroPane() {
     currentPane = 'pomodoro';
+    removeTabSelection();
+    pomodoroEl.className = 'selected';
     setTimerDisplay('25', '00');
 }
 
 function showShortBreakPane() {
     currentPane = 'shortBreak';
+    removeTabSelection();
+    shortBreakEl.className = 'selected';
     setTimerDisplay('05', '00');
 }
 
 function showLongBreakPane() {
     currentPane = 'longBreak';
+    removeTabSelection();
+    longBreakEl.className = 'selected';
     setTimerDisplay('15', '00');
+}
+
+function removeTabSelection() {
+    var tabs = document.querySelectorAll('#tabs div');
+    tabs = Array.prototype.slice.call(tabs);
+    tabs.forEach(function(tab) {
+        tab.className = '';
+    });
 }

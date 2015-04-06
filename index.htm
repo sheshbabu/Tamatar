@@ -6,12 +6,43 @@
                 font-family: 'RobotoThin';
                 src: url('Roboto-Thin-webfont.woff');
             }
-            body {
-                background-color: #D50000;
+            @font-face {
+                font-family: 'RobotoRegular';
+                src: url('Roboto-Regular-webfont.woff');
             }
-            div {
+            body {
+                margin: 0;
+            }
+            div#timer {
                 font-family: RobotoThin, sans-serif;
                 font-size: 80px;
+                color: #D50000;
+            }
+            #title {
+                font-family: RobotoRegular, sans-serif;
+                font-size: 32px;
+                color: white;
+                background-color: #D50000;
+                padding-left: 10px;
+            }
+            #tabs {
+                font-family: RobotoRegular, sans-serif;
+                font-size: 18px;
+                color: white;
+                display: flex;
+                justify-content: space-around;
+                background-color: #D50000;
+                padding: 10px 0 0 0;
+                margin-bottom: 5px;
+            }
+            #tabs div {
+                flex-grow: 1;
+                text-align: center;
+                color: rgba(128, 0, 0, 255);
+            }
+
+            #tabs div.selected {
+                border-bottom: 5px solid white;
                 color: white;
             }
         </style>
@@ -19,10 +50,13 @@
         <script defer src='timer.js'></script>
     </head>
     <body>
+        <div id='title'>Tamatar</div>
+        <div id='tabs'>
+            <div id='pomodoro' class='selected'>Pomodoro</div>
+            <div id='shortBreak'>Short Break</div>
+            <div id='longBreak'>Long Break</div>
+        </div>
         <button id='startStop'>Start</button>
         <div id='timer'></div>
-        <button id='pomodoro'>Pomodoro</button>
-        <button id='shortBreak'>Short Break</button>
-        <button id='longBreak'>Long Break</button>
       </body>
 </html>
