@@ -3,6 +3,9 @@
     "description": "Pomodoro Timer",
     "version": "0.1",
     "manifest_version": 2,
+    "permissions": [
+        "notifications"
+    ],
     "app": {
         "background": {
             "scripts": ["background.js"]
@@ -10,6 +13,6 @@
     },
     "icons": {
         "16": "tamatar-16.png",
-        "128": "tamatar-128.png"
+        "128": "tamatar-notification.png"
     }
 }

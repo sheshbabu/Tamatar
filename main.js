@@ -11,7 +11,12 @@ var onTimerEnd = function() {
     startStopEl.textContent = 'Start'
     isRunning = false;
     enablePaneSwitching();
-    chrome.app.window.current().focus();
+    chrome.notifications.create('', {
+        iconUrl: 'tamatar-notification.png',
+        title: 'Tamatar',
+        message: 'Done',
+        type: 'basic'
+    }, function() {});
 }
 
 var timer;
