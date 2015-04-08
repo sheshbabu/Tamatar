@@ -8,7 +8,7 @@ setTimerDisplay(25, '00');
 
 var onTimerEnd = function() {
     timer.stop();
-    startStopEl.textContent = 'Start'
+    startStopEl.className = 'start';
     isRunning = false;
     enablePaneSwitching();
     chrome.notifications.create('', {
@@ -39,11 +39,11 @@ function startStop() {
         timer = new Timer(timerDuration, setTimerDisplay, onTimerEnd);
         timer.start();
         isRunning = true;
-        startStopEl.textContent = 'Stop';
+        startStopEl.className = '';
         disablePaneSwitching();
     } else {
         timer.stop();
-        startStopEl.textContent = 'Start'
+        startStopEl.className = 'start';
         isRunning = false;
         enablePaneSwitching();
     }

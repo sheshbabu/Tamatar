@@ -1,5 +1,5 @@
 Tasks:
- ☐ Implement start/stop as "floating action button"
+ ✔ Implement start/stop as "floating action button" @done (15-04-08 23:47)
  ☐ Implement menu dropdown
    ☐ Implement options UI
      ☐ Customize pomodoro, short break, long break duration
