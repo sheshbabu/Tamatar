@@ -1,7 +1,7 @@
 var currentPane = 'pomodoro';
 
 var setTimerDisplay = function(minutes, seconds) {
-    var timerEl = document.querySelector('#timer');
+    var timerEl = document.querySelector('.timer-display');
     timerEl.textContent = minutes + ':' + seconds;
 };
 setTimerDisplay(25, '00');
@@ -23,7 +23,7 @@ var timer;
 
 var isRunning = false;
 
-var startStopEl = document.querySelector('#startStop'),
+var startStopEl = document.querySelector('#floating-action-button'),
     pomodoroEl = document.querySelector('#pomodoro'),
     shortBreakEl = document.querySelector('#shortBreak'),
     longBreakEl = document.querySelector('#longBreak');
@@ -39,7 +39,7 @@ function startStop() {
         timer = new Timer(timerDuration, setTimerDisplay, onTimerEnd);
         timer.start();
         isRunning = true;
-        startStopEl.className = '';
+        startStopEl.className = 'stop';
         disablePaneSwitching();
     } else {
         timer.stop();
@@ -75,28 +75,28 @@ function getTimerDurationByPane(paneName) {
 function showPomodoroPane() {
     currentPane = 'pomodoro';
     removeTabSelection();
-    pomodoroEl.className = 'selected';
+    pomodoroEl.className = 'tab selected';
     setTimerDisplay('25', '00');
 }
 
 function showShortBreakPane() {
     currentPane = 'shortBreak';
     removeTabSelection();
-    shortBreakEl.className = 'selected';
+    shortBreakEl.className = 'tab selected';
     setTimerDisplay('05', '00');
 }
 
 function showLongBreakPane() {
     currentPane = 'longBreak';
     removeTabSelection();
-    longBreakEl.className = 'selected';
+    longBreakEl.className = 'tab selected';
     setTimerDisplay('15', '00');
 }
 
 function removeTabSelection() {
-    var tabs = document.querySelectorAll('#tabs div');
+    var tabs = document.querySelectorAll('.tab');
     tabs = Array.prototype.slice.call(tabs);
     tabs.forEach(function(tab) {
-        tab.className = '';
+        tab.className = 'tab';
     });
 }
