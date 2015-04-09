@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'RobotoThin';
+    src: url('../assets/fonts/Roboto-Thin-webfont.woff');
+}
+@font-face {
+    font-family: 'RobotoMedium';
+    src: url('../assets/fonts/Roboto-Medium-webfont.woff');
+}
+body {
+    margin: 0;
+}
+div#timer {
+    font-family: RobotoThin, sans-serif;
+    font-size: 80px;
+    color: #D50000;
+    text-align: center;
+    margin-top: 15px;
+}
+#app-bar {
+    font-family: RobotoMedium, sans-serif;
+    font-size: 20px;
+    color: white;
+    background-color: #D50000;
+    padding-left: 16px;
+    height: 56px;
+    line-height: 56px;
+}
+#tabs {
+    font-family: RobotoMedium, sans-serif;
+    font-size: 13px;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    background-color: #D50000;
+    line-height: 48px;
+    margin-bottom: 4px;
+    height: 48px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+#tabs div {
+    flex-grow: 1;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+#tabs div.selected {
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+#startStop {
+    height: 50px;
+    width: 50px;
+    background-color: #D50000;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+
+#startStop div {
+    height: 24px;
+    width: 24px;
+    position: relative;
+    top: 14px;
+    left: 14px;
+    background: url('../assets/images/ic_stop_24px.svg') 24px;
+}
+
+#startStop.start div {
+    background: url('../assets/images/ic_play_arrow_24px.svg') 24px;
+}

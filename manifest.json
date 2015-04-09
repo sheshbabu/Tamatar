@@ -8,11 +8,11 @@
     ],
     "app": {
         "background": {
-            "scripts": ["background.js"]
+            "scripts": ["src/scripts/background.js"]
         }
     },
     "icons": {
-        "16": "tamatar-16.png",
-        "128": "tamatar-notification.png"
+        "16": "src/assets/images/tamatar-16.png",
+        "128": "src/assets/images/tamatar-notification.png"
     }
 }
