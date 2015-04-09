@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href='/src/styles/style.css'>
-        <script defer src='src/scripts/main.js'></script>
-        <script defer src='src/scripts/timer.js'></script>
-    </head>
-    <body>
-        <div id='app-bar'>Tamatar</div>
-        <div id='tabs'>
-            <div id='pomodoro' class='selected'>Pomodoro</div>
-            <div id='shortBreak'>Short Break</div>
-            <div id='longBreak'>Long Break</div>
-        </div>
-        <div id='startStop' class='start'>
-            <div></div>
-        </div>
-        <div id='timer'></div>
-      </body>
+
+<head>
+    <link rel="stylesheet" type="text/css" href='/src/styles/style.css'>
+    <script defer src='src/scripts/main.js'></script>
+    <script defer src='src/scripts/timer.js'></script>
+</head>
+
+<body>
+    <div class='app-bar'>Tamatar</div>
+    <div class='tabs'>
+        <div id='pomodoro' class='tab selected'>Pomodoro</div>
+        <div id='shortBreak' class='tab'>Short Break</div>
+        <div id='longBreak' class='tab'>Long Break</div>
+    </div>
+    <div id='floating-action-button' class='start'>
+        <div></div>
+    </div>
+    <div class='timer-display'></div>
+</body>
+
 </html>
