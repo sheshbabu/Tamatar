@@ -15,27 +15,26 @@ var Timer = (function() {
 
         this.interval = setInterval(function() {
             currTime = Date.now();
-            diffTime = (self.duration - (currTime - startTime)) / 1000;
+            diffTime = (self.duration - (currTime - startTime));
 
             if (diffTime < 0) {
                 self.endCallback();
                 return;
             }
 
-            diffTime = self.getTimeBreakdown(diffTime);
-            self.progressCallback(diffTime.minutes, diffTime.seconds);
+            self.progressCallback(diffTime);
         }, 1000);
     }
 
     Timer.prototype.stop = function() {
         clearInterval(this.interval);
-        var inital = this.getTimeBreakdown(this.duration / 1000);
-        this.progressCallback(inital.minutes, inital.seconds);
     }
 
-    Timer.prototype.getTimeBreakdown = function(time) {
+    Timer.getTimeBreakdown = function(time) {
         var minutes,
             seconds;
+
+        time = time / 1000;
 
         minutes = time / 60;
         minutes = minutes > 0 ? minutes : 0;

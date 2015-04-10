@@ -48,6 +48,10 @@ body {
     color: white;
 }
 
+.tabs .tab.disabled {
+    cursor: not-allowed;
+}
+
 .timer-display {
     font-family: RobotoThin, sans-serif;
     font-size: 80px;
