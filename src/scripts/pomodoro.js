@@ -56,7 +56,7 @@ var Pomodoro = (function() {
     }
 
     function _onTimerEnd(time) {
-        _stop();
+        _stop(time);
         // Send chrome notification
         chrome.notifications.create('', {
             iconUrl: 'src/assets/images/tamatar-notification.png',
@@ -86,7 +86,7 @@ var Pomodoro = (function() {
         _disableTabs();
     }
 
-    function _stop() {
+    function _stop(time) {
         _timer.stop();
         _floatingActionButtonEl.className = 'start';
         _setTimerDisplay(time);
