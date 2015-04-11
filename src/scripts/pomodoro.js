@@ -146,7 +146,7 @@ var Pomodoro = (function() {
 
     return {
         init: init
-    }
+    };
 
 }());
 

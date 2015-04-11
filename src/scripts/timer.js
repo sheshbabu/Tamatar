@@ -24,11 +24,11 @@ var Timer = (function() {
 
             self.progressCallback(diffTime);
         }, 1000);
-    }
+    };
 
     Timer.prototype.stop = function() {
         clearInterval(this.interval);
-    }
+    };
 
     Timer.getTimeBreakdown = function(time) {
         var minutes,
@@ -48,8 +48,8 @@ var Timer = (function() {
         return {
             minutes: minutes,
             seconds: seconds
-        }
-    }
+        };
+    };
 
     return Timer;
 
