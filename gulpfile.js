@@ -15,7 +15,7 @@ gulp.task('integrationTests', function() {
     return gulp.src('tests/specs/*.js')
         .pipe(jasmine({
             integration: true,
-            vendor: ['tests/lib/jquery-2.1.3.min.js', 'tests/lib/jasmine-jquery.js', 'tests/specs/pomodoro-spec.js', 'src/scripts/pomodoro.js', 'src/scripts/timer.js']
+            vendor: ['tests/lib/jquery-2.1.3.min.js', 'tests/lib/jasmine-jquery.js', 'tests/specs/pomodoro-spec.js', 'src/scripts/timer.js', 'src/scripts/pomodoro.js']
         }));
 });
 

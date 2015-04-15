@@ -35,7 +35,10 @@ describe('Pomodoro', function() {
 
         beforeEach(function() {
             setupFixtures();
-            Pomodoro.init();
+            new Pomodoro({
+                Timer: Timer,
+                chrome: {}
+            });
         });
 
         it('should set pomodoro tab as selected', function() {
@@ -56,7 +59,10 @@ describe('Pomodoro', function() {
 
         beforeEach(function() {
             setupFixtures();
-            Pomodoro.init();
+            new Pomodoro({
+                Timer: Timer,
+                chrome: {}
+            });
         });
 
         it('should set clicked tab as selected and other tabs as unselected', function() {
@@ -93,7 +99,10 @@ describe('Pomodoro', function() {
 
         beforeEach(function() {
             setupFixtures();
-            Pomodoro.init({}, {});
+            new Pomodoro({
+                Timer: Timer,
+                chrome: {}
+            });
             fireEvent(floatingActionButtonEl, 'click');
         });
 

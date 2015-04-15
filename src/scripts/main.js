@@ -1,3 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    Pomodoro.init(Timer, chrome);
+    new Pomodoro({
+        Timer: Timer,
+        chrome: chrome
+    });
 });
