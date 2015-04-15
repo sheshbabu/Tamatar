@@ -1,12 +1,10 @@
-var Pomodoro = (function() {
-
-    var TIME_POMODORO = 25 * 60 * 1000,
-        TIME_SHORT_BREAK = 5 * 60 * 1000,
-        TIME_LONG_BREAK = 15 * 60 * 1000;
-
+function Pomodoro(options) {
     var _Timer,
         _chrome,
         _timer,
+        _timePomodoro,
+        _timeShortBreak,
+        _timeLongBreak,
         _isTimerRunning = false,
         _areTabsLocked = false,
         _currentTab = 'pomodoro';
@@ -17,19 +15,23 @@ var Pomodoro = (function() {
         _floatingActionButtonEl,
         _timerDisplayEl;
 
+    options = options || {};
 
-    function init(Timer, chrome) {
-        _Timer = Timer;
-        _chrome = chrome;
-        _floatingActionButtonEl = document.querySelector('#floating-action-button');
-        _tabPomodoroEl = document.querySelector('#pomodoro');
-        _tabShortBreakEl = document.querySelector('#shortBreak');
-        _tabLongBreakEl = document.querySelector('#longBreak');
-        _timerDisplayEl = document.querySelector('.timer-display');
+    _Timer = options.Timer;
+    _chrome = options.chrome;
 
-        _setTimerDisplay(TIME_POMODORO);
-        _bindEvents();
-    }
+    _timePomodoro = options.timePomodoro || 25 * 60 * 1000;
+    _timeShortBreak = options.timeShortBreak || 5 * 60 * 1000;
+    _timeLongBreak = options.timeLongBreak || 15 * 60 * 1000;
+
+    _floatingActionButtonEl = document.querySelector('#floating-action-button');
+    _tabPomodoroEl = document.querySelector('#pomodoro');
+    _tabShortBreakEl = document.querySelector('#shortBreak');
+    _tabLongBreakEl = document.querySelector('#longBreak');
+    _timerDisplayEl = document.querySelector('.timer-display');
+
+    _setTimerDisplay(_timePomodoro);
+    _bindEvents();
 
     function _bindEvents() {
         _floatingActionButtonEl.addEventListener('click', function() {
@@ -74,13 +76,13 @@ var Pomodoro = (function() {
         var timerDuration;
         switch (_currentTab) {
             case 'pomodoro':
-                timerDuration = TIME_POMODORO;
+                timerDuration = _timePomodoro;
                 break;
             case 'shortBreak':
-                timerDuration = TIME_SHORT_BREAK;
+                timerDuration = _timeShortBreak;
                 break;
             case 'longBreak':
-                timerDuration = TIME_LONG_BREAK;
+                timerDuration = _timeLongBreak;
                 break;
         }
         _timer = new _Timer(timerDuration, _onTimerProgress, _onTimerEnd);
@@ -111,17 +113,17 @@ var Pomodoro = (function() {
             case 'pomodoro':
                 tabEl = _tabPomodoroEl;
                 _currentTab = 'pomodoro';
-                _setTimerDisplay(TIME_POMODORO);
+                _setTimerDisplay(_timePomodoro);
                 break;
             case 'shortBreak':
                 tabEl = _tabShortBreakEl;
                 _currentTab = 'shortBreak';
-                _setTimerDisplay(TIME_SHORT_BREAK);
+                _setTimerDisplay(_timeShortBreak);
                 break;
             case 'longBreak':
                 tabEl = _tabLongBreakEl;
                 _currentTab = 'longBreak';
-                _setTimerDisplay(TIME_LONG_BREAK);
+                _setTimerDisplay(_timeLongBreak);
                 break;
         }
         tabEl.className = 'tab selected';
@@ -147,9 +149,4 @@ var Pomodoro = (function() {
         _tabShortBreakEl.className = 'tab';
         _tabLongBreakEl.className = 'tab';
     }
-
-    return {
-        init: init
-    };
-
-}());
+}

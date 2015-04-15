@@ -6,8 +6,13 @@ describe('Pomodoro', function() {
         tabLongBreakEl,
         timerDisplayEl;
 
-    beforeEach(function() {
-        // cleanup of fixtures is done automatically
+    function fireEvent(el, eventName) {
+        var ev = document.createEvent('Events');
+        ev.initEvent(eventName, true, false);
+        el.dispatchEvent(ev);
+    }
+
+    function setupFixtures() {
         setFixtures("<div class='app-bar'>Tamatar</div>" +
             "<div class='tabs'>" +
             "<div id='pomodoro' class='tab selected'>Pomodoro</div>" +
@@ -24,12 +29,16 @@ describe('Pomodoro', function() {
         tabShortBreakEl = document.querySelector('#shortBreak');
         tabLongBreakEl = document.querySelector('#longBreak');
         timerDisplayEl = document.querySelector('.timer-display');
-    });
+    }
 
     describe('When the app is opened', function() {
 
         beforeEach(function() {
-            Pomodoro.init();
+            setupFixtures();
+            new Pomodoro({
+                Timer: Timer,
+                chrome: {}
+            });
         });
 
         it('should set pomodoro tab as selected', function() {
@@ -49,35 +58,79 @@ describe('Pomodoro', function() {
     describe('When the tabs are switched', function() {
 
         beforeEach(function() {
-            Pomodoro.init();
+            setupFixtures();
+            new Pomodoro({
+                Timer: Timer,
+                chrome: {}
+            });
         });
 
         it('should set clicked tab as selected and other tabs as unselected', function() {
-            tabShortBreakEl.click();
+            fireEvent(tabShortBreakEl, 'click');
             expect(tabPomodoroEl.className).toEqual('tab');
             expect(tabShortBreakEl.className).toEqual('tab selected');
             expect(tabLongBreakEl.className).toEqual('tab');
 
-            tabLongBreakEl.click();
+            fireEvent(tabLongBreakEl, 'click');
             expect(tabPomodoroEl.className).toEqual('tab');
             expect(tabShortBreakEl.className).toEqual('tab');
             expect(tabLongBreakEl.className).toEqual('tab selected');
 
-            tabPomodoroEl.click();
+            fireEvent(tabPomodoroEl, 'click');
             expect(tabPomodoroEl.className).toEqual('tab selected');
             expect(tabShortBreakEl.className).toEqual('tab');
             expect(tabLongBreakEl.className).toEqual('tab');
         });
 
         it('should set the correct timer display text on tab switch', function() {
-            tabShortBreakEl.click();
+            fireEvent(tabShortBreakEl, 'click');
             expect(timerDisplayEl.textContent).toEqual('05:00');
 
-            tabLongBreakEl.click();
+            fireEvent(tabLongBreakEl, 'click');
             expect(timerDisplayEl.textContent).toEqual('15:00');
 
-            tabPomodoroEl.click();
+            fireEvent(tabPomodoroEl, 'click');
             expect(timerDisplayEl.textContent).toEqual('25:00');
         });
+
     });
+
+    describe('When timer is started', function() {
+
+        beforeEach(function() {
+            setupFixtures();
+            new Pomodoro({
+                Timer: Timer,
+                chrome: {}
+            });
+            fireEvent(floatingActionButtonEl, 'click');
+        });
+
+        it('should disable tab swtiching', function() {
+            expect(tabPomodoroEl.className).toEqual('tab disabled');
+            expect(tabShortBreakEl.className).toEqual('tab disabled');
+            expect(tabLongBreakEl.className).toEqual('tab disabled');
+
+            fireEvent(tabLongBreakEl, 'click');
+            expect(tabPomodoroEl.className).toEqual('tab disabled');
+            expect(tabShortBreakEl.className).toEqual('tab disabled');
+            expect(tabLongBreakEl.className).toEqual('tab disabled');
+
+            fireEvent(tabPomodoroEl, 'click');
+            expect(tabPomodoroEl.className).toEqual('tab disabled');
+            expect(tabShortBreakEl.className).toEqual('tab disabled');
+            expect(tabLongBreakEl.className).toEqual('tab disabled');
+
+            fireEvent(tabShortBreakEl, 'click');
+            expect(tabPomodoroEl.className).toEqual('tab disabled');
+            expect(tabShortBreakEl.className).toEqual('tab disabled');
+            expect(tabLongBreakEl.className).toEqual('tab disabled');
+        });
+
+        it('should set floating-action-button to stop', function() {
+            expect(floatingActionButtonEl.className).toEqual('stop');
+        });
+
+    });
+
 });
