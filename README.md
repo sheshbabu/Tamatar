@@ -1,4 +1,4 @@
-# Tamatar
+# Tamatar [![Build Status](https://travis-ci.org/sheshbabu/Tamatar.svg?branch=master)](https://travis-ci.org/sheshbabu/Tamatar)
 
 Pomodoro Timer with Material Design (Chrome Web App)
 
