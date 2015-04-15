@@ -25,6 +25,7 @@
   "homepage": "https://github.com/sheshbabu/Tamatar",
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-jasmine-phantom": "^1.1.2",
     "gulp-jshint": "^1.10.0"
   }
 }
