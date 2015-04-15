@@ -4,7 +4,9 @@ var Pomodoro = (function() {
         TIME_SHORT_BREAK = 5 * 60 * 1000,
         TIME_LONG_BREAK = 15 * 60 * 1000;
 
-    var _timer,
+    var _Timer,
+        _chrome,
+        _timer,
         _isTimerRunning = false,
         _areTabsLocked = false,
         _currentTab = 'pomodoro';
@@ -17,6 +19,8 @@ var Pomodoro = (function() {
 
 
     function init(Timer, chrome) {
+        _Timer = Timer;
+        _chrome = chrome;
         _floatingActionButtonEl = document.querySelector('#floating-action-button');
         _tabPomodoroEl = document.querySelector('#pomodoro');
         _tabShortBreakEl = document.querySelector('#shortBreak');
@@ -47,7 +51,7 @@ var Pomodoro = (function() {
     }
 
     function _setTimerDisplay(time) {
-        time = Timer.getTimeBreakdown(time);
+        time = _Timer.getTimeBreakdown(time);
         _timerDisplayEl.textContent = time.minutes + ':' + time.seconds;
     }
 
@@ -58,7 +62,7 @@ var Pomodoro = (function() {
     function _onTimerEnd(time) {
         _stop(time);
         // Send chrome notification
-        chrome.notifications.create('', {
+        _chrome.notifications.create('', {
             iconUrl: 'src/assets/images/tamatar-notification.png',
             title: 'Tamatar',
             message: 'Done',
@@ -79,7 +83,7 @@ var Pomodoro = (function() {
                 timerDuration = TIME_LONG_BREAK;
                 break;
         }
-        _timer = new Timer(timerDuration, _onTimerProgress, _onTimerEnd);
+        _timer = new _Timer(timerDuration, _onTimerProgress, _onTimerEnd);
         _timer.start();
         _floatingActionButtonEl.className = 'stop';
         _isTimerRunning = true;
