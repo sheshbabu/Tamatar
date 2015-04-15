@@ -12,7 +12,7 @@
         }
     },
     "icons": {
-        "16": "src/assets/images/tamatar-16.png",
-        "128": "src/assets/images/tamatar-notification.png"
+        "16": "src/assets/images/tamaterial-16.png",
+        "128": "src/assets/images/tamaterial-128.png"
     }
 }

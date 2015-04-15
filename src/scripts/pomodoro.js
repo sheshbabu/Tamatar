@@ -65,7 +65,7 @@ function Pomodoro(options) {
         _stop(time);
         // Send chrome notification
         _chrome.notifications.create('', {
-            iconUrl: 'src/assets/images/tamatar-notification.png',
+            iconUrl: 'src/assets/images/tamaterial-128.png',
             title: 'Tamatar',
             message: 'Done',
             type: 'basic'
