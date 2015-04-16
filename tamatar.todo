@@ -1,5 +1,4 @@
 Tasks:
- ☐ Update tests
  ☐ Investigate notifications with snooze button and progressbar
  ☐ Implement menu dropdown
    ☐ Implement options UI
@@ -15,6 +14,7 @@ Tasks:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Update tests @done (15-04-16 23:14) @project(Tasks)
  ✔ Add more details to readme @done (15-04-16 19:31) @project(Tasks)
  ✔ Add chrome webstore link to readme @done (15-04-16 19:31) @project(Tasks)
  ✔ Update the icon to be more red and material-y @done (15-04-16 01:36) @project(Tasks)
