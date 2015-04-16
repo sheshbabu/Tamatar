@@ -41,7 +41,7 @@ describe('Timer', function() {
         timer.start();
         spyOn(Date, 'now').and.returnValue(startTime + 4000);
         jasmine.clock().tick(1000);
-        expect(endCallbackSpy).toHaveBeenCalled();
+        expect(endCallbackSpy.calls.count()).toEqual(1);
     });
 
     it('should stop calling progressCallback after stopped', function() {
