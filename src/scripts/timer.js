@@ -45,6 +45,9 @@ var Timer = (function() {
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
+        minutes = minutes.toString();
+        seconds = seconds.toString();
+
         return {
             minutes: minutes,
             seconds: seconds
