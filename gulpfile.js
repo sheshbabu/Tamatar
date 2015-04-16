@@ -1,11 +1,9 @@
 var gulp = require('gulp');
 
-// Plugins
 var jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     jasmine = require('gulp-jasmine-phantom');
 
-// Lint
 gulp.task('lint', function() {
     return gulp.src('src/scripts/*.js')
         .pipe(jshint())
@@ -37,5 +35,4 @@ gulp.task('integration-test', ['compile-integration-test'], function() {
         }));
 });
 
-// Default
 gulp.task('default', ['lint', 'unit-test', 'integration-test']);
