@@ -1,5 +1,5 @@
 Tasks:
- ☐ Write tests
+ ☐ Update tests
  ☐ Investigate notifications with snooze button and progressbar
  ☐ Implement menu dropdown
    ☐ Implement options UI
@@ -15,8 +15,10 @@ Tasks:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
- ✔ Refactor code @done (15-04-16 01:36) @project(Tasks)
+ ✔ Add more details to readme @done (15-04-16 19:31) @project(Tasks)
+ ✔ Add chrome webstore link to readme @done (15-04-16 19:31) @project(Tasks)
  ✔ Update the icon to be more red and material-y @done (15-04-16 01:36) @project(Tasks)
+ ✔ Refactor code @done (15-04-16 01:36) @project(Tasks)
  ✔ Organize files @done (15-04-09 13:20) @project(Tasks)
  ✔ Correct material design guidelines violations @done (15-04-09 02:08) @project(Tasks)
  ✔ Implement start/stop as "floating action button" @done (15-04-08 23:47) @project(Tasks)
