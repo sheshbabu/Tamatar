@@ -133,4 +133,95 @@ describe('Pomodoro', function() {
 
     });
 
+    describe('When timer is stopped', function() {
+
+        beforeEach(function(done) {
+            setupFixtures();
+            new Pomodoro({
+                Timer: Timer,
+                chrome: {}
+            });
+            setTimeout(function() {
+                fireEvent(floatingActionButtonEl, 'click');
+                done();
+            }, 1000);
+            fireEvent(floatingActionButtonEl, 'click');
+        });
+
+        it('should enable tab swtiching', function() {
+            expect(tabPomodoroEl.className).toEqual('tab selected');
+            expect(tabShortBreakEl.className).toEqual('tab');
+            expect(tabLongBreakEl.className).toEqual('tab');
+        });
+
+        it('should set floating-action-button to start', function() {
+            expect(floatingActionButtonEl.className).toEqual('start');
+        });
+
+    });
+
+    describe('When timer ends', function() {
+
+        var stubChrome = {
+            notifications: {
+                create: jasmine.createSpy('spy')
+            }
+        }
+
+        beforeEach(function() {
+            setupFixtures();
+            new Pomodoro({
+                Timer: Timer,
+                chrome: stubChrome,
+                timePomodoro: 1000
+            });
+            fireEvent(floatingActionButtonEl, 'click');
+        });
+
+        afterEach(function() {
+            stubChrome.notifications.create.calls.reset();
+        });
+
+        it('should reset the timer-display to original value', function(done) {
+            setTimeout(function() {
+                expect(timerDisplayEl.textContent).toEqual('00:01');
+                done();
+            }, 2000);
+        });
+
+        it('should send chrome notification', function(done) {
+            setTimeout(function() {
+                expect(stubChrome.notifications.create.calls.mostRecent().args[0]).toEqual('');
+                expect(stubChrome.notifications.create.calls.mostRecent().args[1]).toEqual({
+                    iconUrl: 'src/assets/images/tamaterial-128.png',
+                    title: 'Tamatar',
+                    message: 'Done',
+                    type: 'basic'
+                });
+
+                done();
+
+            }, 2000);
+        });
+
+        it('should enable tab swtiching', function(done) {
+            setTimeout(function() {
+                expect(tabPomodoroEl.className).toEqual('tab selected');
+                expect(tabShortBreakEl.className).toEqual('tab');
+                expect(tabLongBreakEl.className).toEqual('tab');
+                done();
+            }, 2000);
+
+        });
+
+        it('should set floating-action-button to start', function(done) {
+            setTimeout(function() {
+                expect(floatingActionButtonEl.className).toEqual('start');
+                done();
+            }, 2000);
+        });
+
+    });
+
+
 });
